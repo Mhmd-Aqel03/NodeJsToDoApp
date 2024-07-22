@@ -38,8 +38,8 @@ const hbs = exphdb.create({
 });
 
 
-app.engine("handlebars", hbs.engine);
 app.set("views", path.join(__dirname, "views"));
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 app.use(express.json());
