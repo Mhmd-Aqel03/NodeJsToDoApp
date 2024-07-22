@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col">
+        <a href="/users/logout" class="btn btn-secondary position-absolute top-0 end-0 mt-2 me-2">Logout</a>
+        <h6 class=" mt-2 me-2" style="opacity: 0;">1</h6>
+    </div>
+    <div class="col">
+        <a href="/todo/reset" class="btn btn-secondary position-absolute top-0 start-0 mt-2 ms-2">Reset</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <h1>To do:</h1>
+        <form method="post" action="/todo/check" id="checkboxes">
+            <ul>
+                {{#each todos}}
+                {{#if this.status}}
+                <li>
+                    {{this.task}} <input type="checkbox" name="task" value="{{this.task}}"
+                        id="checkbox-official" onChange="this.form.submit()" />
+                </li>
+                {{/if}}
+                {{/each}}
+            </ul>
+        </form>
+        <form method="post" action="/todo" id="myform" onsubmit="return validateForm()">
+            <div class="row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="inputPassword6" class="col-form-label">Add task:</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" id="inputPassword6" class="form-control" name="task"
+                        aria-describedby="passwordHelpInline">
+                </div>
+                <div class="col-auto">
+                    <span id="passwordHelpInline" class="form-text">
+                        <input type="submit" class="btn btn-primary" value="Add Task">
+                    </span>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="col-6">
+        <h1>Done:</h1>
+        <form method="post" action="/todo/delete" id="checkboxes">
+            <ul>
+                {{#each todos}}
+                {{#unless this.status}}
+                <li>
+                    {{this.task}} <input type="checkbox" name="task" value="{{this.task}}"
+                        id="checkbox-official" onChange="this.form.submit()" />
+                </li>
+                {{/unless}}
+                {{/each}}
+            </ul>
+        </form>
+    </div>
+</div>
+<script>
+    function validateForm() {
+        let x = document.forms["myform"]["task"].value;
+        if (x == "") {
+            alert("must enter task");
+            return false;
+        }
+    }
+</script>
