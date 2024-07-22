@@ -80,4 +80,6 @@ app.use('/users', require('./routes/user'))
 
 const PORT = process.env.PORT || 8000;
 
+console.log(`Web server running on Port: ${PORT}`)
+
 app.listen(PORT);
