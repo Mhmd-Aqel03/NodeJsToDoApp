@@ -6,6 +6,7 @@ const flash = require('connect-flash')
 const passport = require('passport')
 const path = require('path')
 const app = express();
+const MongoStore = require('connect-mongo')
 require("dotenv").config();
 const log = (req, res, next) => {
   console.log("API called");
@@ -49,14 +50,25 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(log);
 
 //express session
+// app.use(
+//   session({
+//     secret: "keyboard cat",
+//     resave: true,
+//     saveUninitialized: true,
+//     cookie: {
+//       maxAge:99999999999
+//     }
+//   })
+// );
 app.use(
   session({
-    secret: "keyboard cat",
-    resave: true,
+    secret: "Bannaa",
+    resave: false,
     saveUninitialized: true,
-    cookie: {
-      maxAge:99999999999
-    }
+    store: MongoStore.create({
+      mongoUrl: process.env.DB_CON,
+      collectionName: "sessions",
+    }),
   })
 );
 
