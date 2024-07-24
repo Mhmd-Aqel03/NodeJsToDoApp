@@ -9,7 +9,7 @@ const TaskSchema = mongoose.Schema({
     type: Boolean,
     default: true
   },
-  user_id: {
+  board_name: {
     type: String,
     required: true
   }
