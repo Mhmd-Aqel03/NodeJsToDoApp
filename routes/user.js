@@ -35,7 +35,7 @@ router.post("/createboard", auth.ensureAuthenticated, async (req, res) => {
 
     if (boardAlreadyExsists) {
       req.flash("error_msg", "baord already exsists");
-      return res.redirect("/boards");
+      return res.redirect("/users/boards");
     }
   } catch (err) {
     console.log(err);
@@ -53,8 +53,8 @@ router.post("/createboard", auth.ensureAuthenticated, async (req, res) => {
     console.log(err);
     return res.status(500).json({ msg: "Something went wrong" });
   }
-
-  res.redirect("/users/baords");
+  console.log("Mohanned the ponderer")
+  res.redirect("/users/boards");
 });
 
 //Login action
